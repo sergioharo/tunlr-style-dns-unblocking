@@ -46,11 +46,6 @@ class GenConf {
             }
         }
 
-        $test = $this->add_test($haproxy_bind_ip, $server_options);
-        $haproxy_catchall_frontend_content .= $test[0];
-        $haproxy_catchall_backend_content .= $test[1];
-        $dnsmasq_content .= $test[2];
-
         $haproxy_content .= $haproxy_catchall_frontend_content . PHP_EOL;
         $haproxy_content .= $haproxy_catchall_backend_content;
         $haproxy_content .= $haproxy_catchall_frontend_ssl_content . PHP_EOL;
@@ -124,11 +119,6 @@ class GenConf {
                 $dnsmasq_content .= $this->generate_dns($proxy->dest_addr, $current_dnat_ip);
             }
         }
-
-        $test = $this->add_test($current_dnat_ip, $server_options);
-        $haproxy_catchall_frontend_content .= $test[0];
-        $haproxy_catchall_backend_content .= $test[1];
-        $dnsmasq_content .= $test[2];
 
         echo 'Make sure the following IP addresses are available as virtual interfaces on your Ddnsmasq-server:' . PHP_EOL;
 
@@ -224,12 +214,6 @@ class GenConf {
             }
         }
 
-        $test = $this->add_test($current_loopback_ip, $server_options);
-        $haproxy_catchall_frontend_content .= $test[0];
-        $haproxy_catchall_backend_content .= $test[1];
-        $this->add_hosts($hosts, 'proxy-test.trick77.com', $current_loopback_ip);
-        $this->add_hosts($hosts, 'dns-test.trick77.com', $current_loopback_ip);
-
         $haproxy_content .= $haproxy_catchall_frontend_content . PHP_EOL;
         $haproxy_content .= $haproxy_catchall_backend_content;
         $haproxy_content .= $haproxy_catchall_frontend_ssl_content . PHP_EOL;
@@ -278,15 +262,6 @@ class GenConf {
 
         file_put_contents($rinetd_out_filename, $rinetd_content);
         echo 'File generated: ' . $rinetd_out_filename . PHP_EOL;
-    }
-
-    function add_test($catchall_ip, $server_options) {
-        $haproxy_catchall_frontend_content = $this->generate_frontend_catchall_entry('proxy-test.trick77.com', 'http');
-        $haproxy_catchall_backend_content = $this->generate_backend_catchall_entry('proxy-test.trick77.com', 'http', '80',
-            $server_options, 'trick77.com');
-        $dnsmasq_content = $this->generate_dns('proxy-test.trick77.com', $catchall_ip);
-        $dnsmasq_content .= $this->generate_dns('dns-test.trick77.com', $catchall_ip);
-        return array($haproxy_catchall_frontend_content, $haproxy_catchall_backend_content, $dnsmasq_content);
     }
 
     function generate_frontend_catchall_entry($dest_addr, $mode) {

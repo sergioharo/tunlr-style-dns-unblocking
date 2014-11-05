@@ -1622,6 +1622,22 @@
       "enabled":true
     },
     {
+      "name":"secure.showtimeanytime.com",
+      "dest_addr":"secure.showtimeanytime.com",
+      "modes":[
+        {
+          "port":80,
+          "mode":"http"
+        },
+        {
+          "port":443,
+          "mode":"https"
+        }
+      ],
+      "catchall":true,
+      "enabled":true
+    },
+    {
       "name":"hbogo.com",
       "dest_addr":"hbogo.com",
       "modes":[

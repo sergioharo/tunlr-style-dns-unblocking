@@ -15,6 +15,7 @@ class GenConf {
         $iptables_location = $json->iptables_location;
         $server_options = $json->server_options;
         $haproxy_bind_ip = $json->haproxy_bind_ip;
+        $haproxy_ip = $json->haproxy_ip;
         $dnsmasq_content = '';
 
         $haproxy_content = $this->generate_global();
@@ -44,7 +45,7 @@ class GenConf {
                             $server_options);
                     }
                 }
-                $dnsmasq_content .= $this->generate_dns($proxy->dest_addr, $haproxy_bind_ip);
+                $dnsmasq_content .= $this->generate_dns($proxy->dest_addr, $haproxy_ip);
             }
         }
 

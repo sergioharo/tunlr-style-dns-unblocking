@@ -1590,22 +1590,6 @@
       "enabled":true
     },
     {
-      "name":"itsh.bo",
-      "dest_addr":"itsh.bo",
-      "modes":[
-        {
-          "port":80,
-          "mode":"http"
-        },
-        {
-          "port":443,
-          "mode":"https"
-        }
-      ],
-      "catchall":true,
-      "enabled":true
-    },
-    {
       "name":"showtimeanytime.com",
       "dest_addr":"showtimeanytime.com",
       "modes":[
@@ -1958,6 +1942,22 @@
       "enabled":true
     },
     {
+      "name":"hbogo-lv3-hls2",
+      "dest_addr":"hls2.pro11.lv3.hbogo.com",
+      "modes":[
+        {
+          "port":80,
+          "mode":"http"
+        },
+        {
+          "port":443,
+          "mode":"https"
+        }
+      ],
+      "catchall":false,
+      "enabled":true
+    },
+    {
       "name":"hbogo-lv3-hds",
       "dest_addr":"hds2.pro12.lv3.hbogo.com",
       "modes":[
@@ -1976,6 +1976,38 @@
     {
       "name":"hbogo-atv",
       "dest_addr":"atv.hbogo.com",
+      "modes":[
+        {
+          "port":80,
+          "mode":"http"
+        },
+        {
+          "port":443,
+          "mode":"https"
+        }
+      ],
+      "catchall":false,
+      "enabled":true
+    },
+    {
+      "name":"cws-conviva",
+      "dest_addr":"cws.conviva.com",
+      "modes":[
+        {
+          "port":80,
+          "mode":"http"
+        },
+        {
+          "port":443,
+          "mode":"https"
+        }
+      ],
+      "catchall":false,
+      "enabled":true
+    },
+    {
+      "name":"cws-iad1-conviva",
+      "dest_addr":"cws-iad1.conviva.com",
       "modes":[
         {
           "port":80,

@@ -7,9 +7,11 @@ class GenConf {
 
     var $INDENT = '  ';
 
-    function create_pure_sni_config($json_in_filename, $haproxy_out_filename = 'haproxy.conf', $dnsmasq_out_filename = 'dnsmasq-haproxy.conf') {
+    function create_pure_sni_config($json_in_filename, $json_proxies_in_filename, $haproxy_out_filename = 'haproxy.conf', $dnsmasq_out_filename = 'dnsmasq-haproxy.conf') {
         $content = file_get_contents($json_in_filename);
         $json = $this->json_clean_decode($content);
+        $content = file_get_contents($json_proxies_in_filename);
+        $json_proxies = $this->json_clean_decode($content);
         $iptables_location = $json->iptables_location;
         $server_options = $json->server_options;
         $haproxy_bind_ip = $json->haproxy_bind_ip;
@@ -28,7 +30,7 @@ class GenConf {
             $haproxy_content .= $this->generate_stats($json->stats, $haproxy_bind_ip);
         }
 
-        while ($proxy = array_shift($json->proxies)) {
+        while ($proxy = array_shift($json_proxies->proxies)) {
             if ($proxy->enabled) {
                 while ($mode = array_shift($proxy->modes)) {
                     if ($mode->mode === 'http') {
@@ -473,7 +475,7 @@ if ($argc >= 2) {
     } else if ($arg1 === 'local') {
         $g->create_local_non_sni_config('config.json');
     } else if ($arg1 === 'pure-sni') {
-        $g->create_pure_sni_config('config.json');
+        $g->create_pure_sni_config('config.json', 'proxies.json');
     } else {
     	die("Missing/wrong argument, use pure-sni (simple setup), non-sni (advanced setup),  local (advanced setup)" . PHP_EOL);
     }

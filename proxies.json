@@ -1,5 +1,4 @@
 {
-  // *** PROXY CONFIGURATION STARTS HERE
   "proxies":[
     {
       "name":"humble-bundle",
@@ -19,7 +18,7 @@
     },
     {
       "name":"hulu-secure",
-      "dest_addr":"s.hulu.com",
+      "dest_addr":"secure.hulu.com",
       "modes":[
         {
           "port":80,
@@ -36,6 +35,102 @@
     {
       "name":"hulu-play",
       "dest_addr":"play.hulu.com",
+      "modes":[
+        {
+          "port":80,
+          "mode":"http"
+        },
+        {
+          "port":443,
+          "mode":"https"
+        }
+      ],
+      "catchall":false,
+      "enabled":true
+    },
+    {
+      "name":"hulu-appletv",
+      "dest_addr":"appletv.app.hulu.com",
+      "modes":[
+        {
+          "port":80,
+          "mode":"http"
+        },
+        {
+          "port":443,
+          "mode":"https"
+        }
+      ],
+      "catchall":false,
+      "enabled":true
+    },
+    {
+      "name":"hulu-star-app",
+      "dest_addr":"star.app.hulu.com.akadns.net",
+      "modes":[
+        {
+          "port":80,
+          "mode":"http"
+        },
+        {
+          "port":443,
+          "mode":"https"
+        }
+      ],
+      "catchall":false,
+      "enabled":true
+    },
+    {
+      "name":"hulu-t",
+      "dest_addr":"t.hulu.com",
+      "modes":[
+        {
+          "port":80,
+          "mode":"http"
+        },
+        {
+          "port":443,
+          "mode":"https"
+        }
+      ],
+      "catchall":false,
+      "enabled":true
+    },
+    {
+      "name":"hulu-t2",
+      "dest_addr":"t2.hulu.com",
+      "modes":[
+        {
+          "port":80,
+          "mode":"http"
+        },
+        {
+          "port":443,
+          "mode":"https"
+        }
+      ],
+      "catchall":false,
+      "enabled":true
+    },
+    {
+      "name":"hulu-s",
+      "dest_addr":"s.hulu.com",
+      "modes":[
+        {
+          "port":80,
+          "mode":"http"
+        },
+        {
+          "port":443,
+          "mode":"https"
+        }
+      ],
+      "catchall":false,
+      "enabled":true
+    },
+    {
+      "name":"hulu-pt",
+      "dest_addr":"pt.hulu.com",
       "modes":[
         {
           "port":80,
@@ -84,6 +179,22 @@
     {
       "name":"netflix-appboot",
       "dest_addr":"appboot.netflix.com",
+      "modes":[
+        {
+          "port":80,
+          "mode":"http"
+        },
+        {
+          "port":443,
+          "mode":"https"
+        }
+      ],
+      "catchall":false,
+      "enabled":true
+    },
+    {
+      "name":"netflix-img-s",
+      "dest_addr":"www3-ext-s.nflximg.net",
       "modes":[
         {
           "port":80,

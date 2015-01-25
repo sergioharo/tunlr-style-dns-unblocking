@@ -605,6 +605,18 @@
       "enabled":true
     },
     {
+      "name":"e5153-akamaiedge",
+      "dest_addr":"e5153.a.akamaiedge.net",
+      "modes":[
+        {
+          "port":80,
+          "mode":"http"
+        }
+      ],
+      "catchall":false,
+      "enabled":true
+    },
+    {
       "name":"pandora-www",
       "dest_addr":"www.pandora.com",
       "modes":[

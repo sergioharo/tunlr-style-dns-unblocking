@@ -145,6 +145,22 @@
       "enabled":true
     },
     {
+      "name":"hulu-firehose",
+      "dest_addr":"firehose.hulu.com",
+      "modes":[
+        {
+          "port":80,
+          "mode":"http"
+        },
+        {
+          "port":443,
+          "mode":"https"
+        }
+      ],
+      "catchall":false,
+      "enabled":true
+    },
+    {
       "name":"netflix-signup",
       "dest_addr":"signup.netflix.com",
       "modes":[

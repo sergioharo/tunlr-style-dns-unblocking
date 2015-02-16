@@ -2351,6 +2351,54 @@
       ],
       "catchall":false,
       "enabled":true
+    },
+    {
+      "name":"foxdigital-atv",
+      "dest_addr":"aptve-fx.foxneodigital.com",
+      "modes":[
+        {
+          "port":80,
+          "mode":"http"
+        },
+        {
+          "port":443,
+          "mode":"https"
+        }
+      ],
+      "catchall":false,
+      "enabled":true
+    },
+    {
+      "name":"fxnetworks-static",
+      "dest_addr":"static-media.fxnetworks.com",
+      "modes":[
+        {
+          "port":80,
+          "mode":"http"
+        },
+        {
+          "port":443,
+          "mode":"https"
+        }
+      ],
+      "catchall":false,
+      "enabled":true
+    },
+    {
+      "name":"fxnetworks-assets",
+      "dest_addr":"assets.fxnetworks.com",
+      "modes":[
+        {
+          "port":80,
+          "mode":"http"
+        },
+        {
+          "port":443,
+          "mode":"https"
+        }
+      ],
+      "catchall":false,
+      "enabled":true
     }
   ]
 }

@@ -2241,6 +2241,22 @@
       "enabled":true
     },
     {
+      "name":"hbogo-hls-v1-cdn",
+      "dest_addr":"hls.v1.cdn.hbogo.com",
+      "modes":[
+        {
+          "port":80,
+          "mode":"http"
+        },
+        {
+          "port":443,
+          "mode":"https"
+        }
+      ],
+      "catchall":false,
+      "enabled":true
+    },
+    {
       "name":"cws-conviva",
       "dest_addr":"cws.conviva.com",
       "modes":[

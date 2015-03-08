@@ -621,6 +621,38 @@
       "enabled":true
     },
     {
+      "name":"netflix-ichnaea",
+      "dest_addr":"ichnaea.netflix.com",
+      "modes":[
+        {
+          "port":80,
+          "mode":"http"
+        },
+        {
+          "port":443,
+          "mode":"https"
+        }
+      ],
+      "catchall":false,
+      "enabled":true
+    },
+    {
+      "name":"netflix-nmtracking",
+      "dest_addr":"nmtracking.netflix.com",
+      "modes":[
+        {
+          "port":80,
+          "mode":"http"
+        },
+        {
+          "port":443,
+          "mode":"https"
+        }
+      ],
+      "catchall":false,
+      "enabled":true
+    },
+    {
       "name":"e5153-akamaiedge",
       "dest_addr":"e5153.a.akamaiedge.net",
       "modes":[

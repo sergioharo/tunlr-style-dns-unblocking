@@ -659,6 +659,10 @@
         {
           "port":80,
           "mode":"http"
+        },
+        {
+          "port":443,
+          "mode":"https"
         }
       ],
       "catchall":false,
@@ -2259,6 +2263,22 @@
     {
       "name":"hbogo-atv",
       "dest_addr":"atv.hbogo.com",
+      "modes":[
+        {
+          "port":80,
+          "mode":"http"
+        },
+        {
+          "port":443,
+          "mode":"https"
+        }
+      ],
+      "catchall":false,
+      "enabled":true
+    },
+    {
+      "name":"godaddy-certs",
+      "dest_addr":"certificates.godaddy.com",
       "modes":[
         {
           "port":80,

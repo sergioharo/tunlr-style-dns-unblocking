@@ -2,3 +2,5 @@
 *.conf
 
 config.json
+
+update-variables.sh

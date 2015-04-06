@@ -1,4 +1,3 @@
-cd /etc/dnsmasq.d/
-sudo rm haproxy.conf
-sudo nano haproxy.conf
+sudo rm /etc/dnsmasq.d/haproxy.conf
+sudo mv ~/haproxy.conf /etc/dnsmasq.d/haproxy.conf
 sudo service dnsmasq restart

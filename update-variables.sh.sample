@@ -1,0 +1,4 @@
+haproxy_server="haproxy.com"
+haproxy_user="haproxy"
+dns_user="dns"
+dns_server="dns.com"

@@ -1,4 +1,3 @@
-cd /etc/haproxy/
-sudo rm haproxy.cfg
-sudo nano haproxy.cfg
+sudo rm /etc/haproxy/haproxy.cfg
+sudo mv ~/haproxy.cfg /etc/haproxy/haproxy.cfg
 sudo service haproxy restart

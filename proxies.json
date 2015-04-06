@@ -2341,6 +2341,22 @@
       "enabled":true
     },
     {
+      "name":"livepassdl-conviva",
+      "dest_addr":"livepassdl.conviva.com",
+      "modes":[
+        {
+          "port":80,
+          "mode":"http"
+        },
+        {
+          "port":443,
+          "mode":"https"
+        }
+      ],
+      "catchall":false,
+      "enabled":true
+    },
+    {
       "name":"a-fxnetworks",
       "dest_addr":"a.fxnetworks.com",
       "modes":[

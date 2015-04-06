@@ -2357,6 +2357,54 @@
       "enabled":true
     },
     {
+      "name":"gwa-lphbs",
+      "dest_addr":"gwa.lphbs.com",
+      "modes":[
+        {
+          "port":80,
+          "mode":"http"
+        },
+        {
+          "port":443,
+          "mode":"https"
+        }
+      ],
+      "catchall":false,
+      "enabled":true
+    },
+    {
+      "name":"gwb-lphbs",
+      "dest_addr":"gwb.lphbs.com",
+      "modes":[
+        {
+          "port":80,
+          "mode":"http"
+        },
+        {
+          "port":443,
+          "mode":"https"
+        }
+      ],
+      "catchall":false,
+      "enabled":true
+    },
+    {
+      "name":"gwc-lphbs",
+      "dest_addr":"gwc.lphbs.com",
+      "modes":[
+        {
+          "port":80,
+          "mode":"http"
+        },
+        {
+          "port":443,
+          "mode":"https"
+        }
+      ],
+      "catchall":false,
+      "enabled":true
+    },
+    {
       "name":"a-fxnetworks",
       "dest_addr":"a.fxnetworks.com",
       "modes":[

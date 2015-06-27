@@ -669,6 +669,22 @@
       "enabled":true
     },
     {
+      "name":"appleglobal-2o7-net",
+      "dest_addr":"appleglobal.102.112.2o7.net",
+      "modes":[
+        {
+          "port":80,
+          "mode":"http"
+        },
+        {
+          "port":443,
+          "mode":"https"
+        }
+      ],
+      "catchall":true,
+      "enabled":true
+    },
+    {
       "name":"pandora-www",
       "dest_addr":"www.pandora.com",
       "modes":[

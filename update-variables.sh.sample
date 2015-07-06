@@ -1,4 +1,9 @@
+# Contains script variables to be used by update-variables.sh
+
+# define hostname and user for haproxy server
 haproxy_server="haproxy.com"
 haproxy_user="haproxy"
+
+# define hostname and user for dnsmasq server
 dns_user="dns"
 dns_server="dns.com"

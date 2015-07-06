@@ -1,77 +1,53 @@
 tunlr-style-dns-unblocking
 ==========================
 
-Since Tunlr.net closed down unexpectedly, I decided to publish my ideas and findings on the subject of DNS unblocking. I used Tunlr for some time when I decided to develop my own, private DNS unblocking solution. I'm using a combination of Dnsmasq and HAProxy. Because IPv4 addresses are getting more and more expensive, I'm focusing on solutions that require just a single public IP address. You will have to compile HAProxy on your own if you don't get a version >= 1.5 using yum/apt-get. Alternatively, you can get a recent HAProxy binary from a (untrusted) repository: http://haproxy.debian.net. Make sure the JSON-Library is available for PHP.
+### Update
+This project is a fork of the previous and now un-maintained project by trick77. Most of the refactoring was to split the json containing the servers to re-route from the configuration data about your servers. From there I've added a number of scripts to make updating much easier.
 
-THIS IS NOT A TUTORIAL!
+### Description
+This project consists of two services to get around geo-blocking constraints from various products like Netflix, Hulu, HBO, etc... It works similarly to how serveral paid services work. It uses HTTPS forwarding (SNI Proxying) to take your requests and forward them to a server based in the US or where ever you want your traffic to look like its coming from.
 
-The configuration generator (genconf.php) offers three different modes:
-- pure-sni (Simple Setup)
-- non-sni (Advanced Setup)
-- local (Advanced Setup)
+### Setup
+To get this set up, you'll need two servers and a machine to work on.
 
-See here for additional information: 
+The first is a local server. I'm using a RaspberryPi for this. On the local server you'll need to instal dnsmasq. It'sa simple dns server that is much easier to configure than BIND. If this server has a firewall or port blocking, you'll need to open up port 53 for DNS to work. You'll also need port 22 for ssh.
 
-- http://trick77.com/2014/03/01/tunlr-style-dns-unblocking-pandora-netflix-hulu-et-al/
-- http://trick77.com/2014/03/02/dns-unblocking-using-dnsmasq-haproxy/
+The second server needs to be based in the country you want your traffic to come from. How you get this server is up to you. I'd recommend looking at Amazon, Azure, Google Cloud, etc. On this server you'll need to install HAProxy v1.5+. You'll also need to make sure that port 80 and 443 are publicly available. You'll also need port 22 for ssh.
 
-I'm currently running a HAProxy-based DNS-unblocker on 199.204.184.146 so you can start with your DNS forwarder setup first and add your own HAProxy server later. This server supports the pure-sni mode only.
-Here's a tester which may help while deploying your own DNS unblocking solution:
+Your work machine will need to be able to run php and shell scripts. I'm doing this on a Mac, but any unix machine should do. To make updates easier, it's also recommended to generate ssh keys so that you can login to these servers remotely without having to enter a password each time. You can use this post as a guide: https://www.digitalocean.com/community/tutorials/how-to-configure-ssh-key-based-authentication-on-a-linux-server
 
-http://trick77.com/dns-unblocking-setup-tester/
+### Configuration
+Once you have the servers setup, you'll need to configure this project. Make copies of the following files and remove the .sample extension:
+- `config.json.sample`
+- `update-variable.sh.sample`
 
-Want to add a service to config.json or found an outdated configuration section? Please send a pull request with the  updated configuration.
+Update the new files with the IP address of your servers and any other pieces of information needed.
 
-#### pure-sni (Simple Setup)
+### Updating
+To configure or update the two servers, open up a terminal and run
+```
+./update-proxies.sh
+```
+### Usage
+To use, just update the DNS address of what machine you want to un-block to point to your local DNS server. For example, you can update the DNS server of your AppleTV. After that, just use the machine as normal
 
-Use this setup if all your multimedia players are SNI-capable.
-
-Requires a U.S. based server (a 128 MB low end VPS is enough) and preferrably a local Dnsmasq DNS forwarder. DD-WRT routers or a Raspberry Pi will do. You could run Dnsmasq on the remote server as well but it's not recommended for security and latency reasons.
-
-In pure-sni mode, you don't have to worry about the dnat_base_ip, dnat_base_port and loopback_base_ip options. Those options are not used, just leave them at their defaults. Make sure iptables_location points to the iptables executable and enter your VPS' IP address in haproxy_bind_ip. Make sure the ports 80 and 443 on your VPS are not being used by some other software like Apache2. Use ```netstat -tulpn``` to make sure.
-
-First you'll need to make copy ```config.json.sample``` to ```config.json``` and then updated with your own information.
-
-For this mode, call the generator like this:
-```php genconf.php pure-sni```
-
-The generator will create two files based on the information in json.config:
-- haproxy.conf
-- dnsmasq-haproxy.conf
-
-Test your new setup with http://trick77.com/dns-unblocking-setup-tester/
- 
-#### non-sni (Advanced Setup)
-
-non-sni mode enables DNS-unblocking for multimedia players (or applications) which can't handle SNI but still using just a single IP address using some netfilter trickery. See here for more information on this mode:
-http://trick77.com/2014/04/02/netflix-dns-unblocking-without-sni-xbox-360-ps3-samsung-tv/
-
-Test your new setup with http://trick77.com/dns-unblocking-setup-tester/
-
-Non-conclusive list of devices which don't understand SNI:
-- Xbox 360 
-- PS3
-- All Sony Bravia TVs and Blu-ray players 
-- Older Samsung TVs
-
-#### local (Advanced Setup)
-
-local mode enables DNS-unblocking on a single device which can't handle SNI but still using just a single IP address and without using another server on the network.
-The generator will create four files based on the information in json.config:
-- haproxy.conf (for the remote server)
-- netsh-haproxy.cmd (for Windows)
-- rinetd-haproxy.conf (for Linux)
-- hosts-haproxy.txt (for Linux/Windows)
-
-For Windows:
-- Run notepad as administrator and open %SystemRoot%\system32\drivers\etc\hosts (usually c:\windows\system32\drivers\etc\hosts), copy the contents of hosts-haproxy.txt
-- Run netsh-haproxy.cmd as administrator
-
-- To reset: delete contents of %SystemRoot%\system32\drivers\etc\hosts, run as administrator 'netsh interface portproxy reset'
-
-For Linux:
-- Run 'sudo tee -a /etc/hosts < hosts-haproxy.txt' (or append hots-haproxy.txt to /etc/hosts)
-- Run 'sudo cp rinetd-haproxy.conf /etc/rinetd.conf && sudo service rinetd start'
-
-- To reset: 'sudo sed -i '/### GENERATED/d' /etc/hosts' and 'sudo service rinetd stop && sudo rm /etc/rinetd.conf'
-
+### Adding hosts to unblock
+If you need to add additional hostnames to the unblock list, you'll need to edit `proxies.json`. To add an item, just copy this default and change the hostname and name portions. At some later point I'll write up how to find the hostnames to add. But basically you'll either need a network inspector like what is in chrome or to look at the dnsmasq logs to see the incoming requests.
+```
+{
+  "name":"unique-name",
+  "dest_addr":"www.host-to-un-block.com",
+  "modes":[
+    {
+      "port":80,
+      "mode":"http"
+    },
+    {
+      "port":443,
+      "mode":"https"
+    }
+  ],
+  "catchall":true,
+  "enabled":true
+}
+```

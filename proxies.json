@@ -2309,6 +2309,54 @@
       "enabled":true
     },
     {
+      "name":"hbogo-atv-api",
+      "dest_addr":"atv.api.hbo.com",
+      "modes":[
+        {
+          "port":80,
+          "mode":"http"
+        },
+        {
+          "port":443,
+          "mode":"https"
+        }
+      ],
+      "catchall":true,
+      "enabled":true
+    },
+    {
+      "name":"hbogo-atv-api-lv3",
+      "dest_addr":"atv.api.lv3.cdn.hbo.com",
+      "modes":[
+        {
+          "port":80,
+          "mode":"http"
+        },
+        {
+          "port":443,
+          "mode":"https"
+        }
+      ],
+      "catchall":true,
+      "enabled":true
+    },
+    {
+      "name":"hbogo-atv-api-artist-lv3",
+      "dest_addr":"artist.api.lv3.cdn.hbo.com",
+      "modes":[
+        {
+          "port":80,
+          "mode":"http"
+        },
+        {
+          "port":443,
+          "mode":"https"
+        }
+      ],
+      "catchall":true,
+      "enabled":true
+    },
+    {
       "name":"godaddy-certs",
       "dest_addr":"certificates.godaddy.com",
       "modes":[
